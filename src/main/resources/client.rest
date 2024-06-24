@@ -1,0 +1,16 @@
+GET localhost:8080/upload/wishlist
+
+###
+GET localhost:8080/upload/wishlist/2
+
+###
+POST localhost:8080/upload/wishlist/
+Content-Type: application/json
+
+{
+"id" : 4,
+"name" : "Camel Up"
+}
+
+###
+GET localhost:8080/upload/profile
