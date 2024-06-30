@@ -14,4 +14,8 @@ public class Wishlist {
     private Integer id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "profile_contact_phone")
+    private Profile profile;
 }

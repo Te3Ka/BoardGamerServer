@@ -23,11 +23,7 @@ public class ProfileRestController {
     @GetMapping("/{contactPhone}")
     public ResponseEntity<Profile> getProfileById(@PathVariable("contactPhone") String contactPhone) {
         Optional<Profile> profile = profileRepository.findById(contactPhone);
-        if (profile.isPresent()) {
-            return ResponseEntity.ok(profile.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return profile.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")

@@ -1,9 +1,6 @@
 package ru.te3ka.bgd.boardgamerdiaryserver.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,4 +14,8 @@ public class WantToPlay {
     private Integer id;
 
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "profile_contact_phone")
+    private Profile profile;
 }

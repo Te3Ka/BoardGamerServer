@@ -23,11 +23,7 @@ public class WantToPlayController {
     @GetMapping("/{id}")
     public ResponseEntity<WantToPlay> getWantToPlayById(@PathVariable("id") Integer id) {
         Optional<WantToPlay> myWantToPlay = myWantToPlayRepository.findById(id);
-        if (myWantToPlay.isPresent()) {
-            return ResponseEntity.ok(myWantToPlay.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return myWantToPlay.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")

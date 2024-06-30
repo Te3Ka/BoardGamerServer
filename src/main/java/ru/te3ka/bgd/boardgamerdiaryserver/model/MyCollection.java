@@ -18,4 +18,8 @@ public class MyCollection {
     private String numberOfGames;
     private String yearOfPurchase;
     private String monthOfPurchase;
+
+    @ManyToOne
+    @JoinColumn(name = "profile_contact_phone")
+    private Profile profile;
 }

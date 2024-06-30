@@ -17,4 +17,8 @@ public class Contact {
     private String nickname;
     private String firstName;
     private String surname;
+
+    @ManyToOne
+    @JoinColumn(name = "profile_contact_phone")
+    private Profile profile;
 }

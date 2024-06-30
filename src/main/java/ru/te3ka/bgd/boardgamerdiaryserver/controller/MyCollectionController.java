@@ -23,11 +23,7 @@ public class MyCollectionController {
     @GetMapping("/{id}")
     public ResponseEntity<MyCollection> getMyCollectionById(@PathVariable("id") Integer id) {
         Optional<MyCollection> myCollection = myCollectionRepository.findById(id);
-        if (myCollection.isPresent()) {
-            return ResponseEntity.ok(myCollection.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return myCollection.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")

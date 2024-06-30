@@ -23,11 +23,7 @@ public class ContactController {
     @GetMapping("/{id}")
     public ResponseEntity<Contact> getContactById(@PathVariable("id") Integer id) {
         Optional<Contact> contact = contactRepository.findById(id);
-        if (contact.isPresent()) {
-            return ResponseEntity.ok(contact.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return contact.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")

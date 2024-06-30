@@ -25,11 +25,7 @@ public class WishlistController {
     @GetMapping("/{id}")
     public ResponseEntity<Wishlist> getWishlistById(@PathVariable("id") Integer id) {
         Optional<Wishlist> wishlist = wishlistRepository.findById(id);
-        if (wishlist.isPresent()) {
-            return ResponseEntity.ok(wishlist.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return wishlist.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping("/")
