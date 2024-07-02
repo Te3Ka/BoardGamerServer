@@ -20,10 +20,18 @@ public class MyCollectionController {
         return myCollectionRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<MyCollection> getMyCollectionById(@PathVariable("id") Integer id) {
-        Optional<MyCollection> myCollection = myCollectionRepository.findById(id);
-        return myCollection.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    @GetMapping("/{id}")
+//    public ResponseEntity<MyCollection> getMyCollectionById(@PathVariable("id") String id) {
+//        Optional<MyCollection> myCollection = myCollectionRepository.findByProfileContactPhone(id);
+//        return myCollection.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    }
+
+    @GetMapping("/{contactPhone}")
+    public ResponseEntity<List<MyCollection>> getMyCollectionByContactPhone(@PathVariable("contactPhone") String contactPhone) {
+        List<MyCollection> myCollectionList = myCollectionRepository.findMyCollectionByContactPhone(contactPhone);
+        if (myCollectionList.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(myCollectionList);
     }
 
     @PostMapping("/")

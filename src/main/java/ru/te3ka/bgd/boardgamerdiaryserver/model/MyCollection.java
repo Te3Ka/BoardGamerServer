@@ -1,5 +1,6 @@
 package ru.te3ka.bgd.boardgamerdiaryserver.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,6 @@ public class MyCollection {
 
     @ManyToOne
     @JoinColumn(name = "profile_contact_phone")
+    @JsonBackReference
     private Profile profile;
 }

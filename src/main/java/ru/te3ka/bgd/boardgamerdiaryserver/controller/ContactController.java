@@ -20,10 +20,18 @@ public class ContactController {
         return contactRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Contact> getContactById(@PathVariable("id") Integer id) {
-        Optional<Contact> contact = contactRepository.findById(id);
-        return contact.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Contact> getContactById(@PathVariable("id") String id) {
+//        Optional<Contact> contact = contactRepository.findByProfileContactPhone(id);
+//        return contact.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    }
+
+    @GetMapping("/{contactPhone}")
+    public ResponseEntity<List<Contact>> getContactsByContactPhone(@PathVariable("contactPhone") String contactPhone) {
+        List<Contact> contactList = contactRepository.findContactsByContactPhone(contactPhone);
+        if (contactList.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(contactList);
     }
 
     @PostMapping("/")

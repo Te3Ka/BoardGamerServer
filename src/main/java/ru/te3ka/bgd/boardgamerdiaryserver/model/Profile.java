@@ -1,5 +1,6 @@
 package ru.te3ka.bgd.boardgamerdiaryserver.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,15 +27,20 @@ public class Profile {
     private int yearOfBirth;
     private String photoPath;
 
+
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Contact> contactList;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<MyCollection> myCollectionList;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<WantToPlay> wantToPlayList;
 
     @OneToMany(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Wishlist> wishlistList;
 }

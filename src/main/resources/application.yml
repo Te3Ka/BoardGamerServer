@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:file:~/testdb
     driver-class-name: org.h2.Driver
     username: sa
     password: password
@@ -20,6 +20,9 @@ spring:
   sql:
     init:
       platform: h2
+  session:
+    jdbc:
+      initialize-schema: always
 
 #  kafka:
 #    bootstrap-servers: localhost:9092

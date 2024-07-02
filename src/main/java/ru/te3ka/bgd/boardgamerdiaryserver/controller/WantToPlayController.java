@@ -14,16 +14,26 @@ import java.util.Optional;
 public class WantToPlayController {
     @Autowired
     private WantToPlayRepository myWantToPlayRepository;
+    @Autowired
+    private WantToPlayRepository wantToPlayRepository;
 
     @GetMapping
     public List<WantToPlay> getAllWantToPlays() {
         return myWantToPlayRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<WantToPlay> getWantToPlayById(@PathVariable("id") Integer id) {
-        Optional<WantToPlay> myWantToPlay = myWantToPlayRepository.findById(id);
-        return myWantToPlay.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    @GetMapping("/{id}")
+//    public ResponseEntity<WantToPlay> getWantToPlayById(@PathVariable("id") String id) {
+//        Optional<WantToPlay> myWantToPlay = myWantToPlayRepository.findByProfileContactPhone(id);
+//        return myWantToPlay.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    }
+
+    @GetMapping("/{contactPhone}")
+    public ResponseEntity<List<WantToPlay>> getWantToPlayByContactPhone(@PathVariable("contactPhone") String contactPhone) {
+        List<WantToPlay> wantToPlayList = wantToPlayRepository.findWantToPlayByContactPhone(contactPhone);
+        if (wantToPlayList.isEmpty())
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(wantToPlayList);
     }
 
     @PostMapping("/")

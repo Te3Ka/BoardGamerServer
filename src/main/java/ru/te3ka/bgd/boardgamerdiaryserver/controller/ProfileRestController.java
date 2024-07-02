@@ -36,10 +36,6 @@ public class ProfileRestController {
         Optional<Profile> optionalProfile = profileRepository.findById(contactPhone);
         if (optionalProfile.isPresent()) {
             Profile profile = optionalProfile.get();
-            profile.setContactId(profileDetails.getContactId());
-            profile.setMyCollectionId(profileDetails.getMyCollectionId());
-            profile.setWantToPlayId(profileDetails.getWantToPlayId());
-            profile.setWishlistId(profileDetails.getWishlistId());
             profile.setNickname(profileDetails.getNickname());
             profile.setFirstName(profileDetails.getFirstName());
             profile.setSurname(profileDetails.getSurname());

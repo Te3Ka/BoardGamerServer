@@ -1,16 +1,48 @@
 GET localhost:8080/upload/wishlist
 
 ###
-GET localhost:8080/upload/wishlist/2
+GET localhost:8080/upload/wishlist/+79811131773
+
+###
+GET localhost:8080/upload/wishlist/+79994754619
+
+###
+GET localhost:8080/upload/contacts
+
+###
+GET localhost:8080/upload/contacts/+79811131773
+
+###
+GET localhost:8080/upload/my_collection
+
+###
+GET localhost:8080/upload/my_collection/+79811131773
+
+###
+GET localhost:8080/upload/my_collection/+79816984956
+
+###
+GET localhost:8080/upload/my_collection/+79994754619
+
 
 ###
 POST localhost:8080/upload/wishlist/
 Content-Type: application/json
 
 {
-"id" : 4,
-"name" : "Camel Up"
+  "id" : 4,
+  "name" : "Camel Up",
+  "profile" : "79811131773"
 }
 
 ###
 GET localhost:8080/upload/profile
+
+###
+GET localhost:8080/upload/profile/+79811131773
+
+###
+GET localhost:8080/upload/profile/+79994754619
+
+###
+GET localhost:8080/upload/profile/+79816984956
