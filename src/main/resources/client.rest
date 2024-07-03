@@ -30,9 +30,8 @@ POST localhost:8080/upload/wishlist/
 Content-Type: application/json
 
 {
-  "id" : 4,
   "name" : "Camel Up",
-  "profile" : "79811131773"
+  "profile" : "+79811131773"
 }
 
 ###
@@ -46,3 +45,24 @@ GET localhost:8080/upload/profile/+79994754619
 
 ###
 GET localhost:8080/upload/profile/+79816984956
+
+###
+POST localhost:8080/meetings/
+Content-Type: application/json
+
+{
+  "date": "2024-07-20",
+  "location": "New Holland",
+  "boardgames": ["Bloodborne", "God of War"],
+  "contacts": ["+79811131773", "+79816984956"]
+}
+
+###
+POST localhost:8080/meetings/2/invite
+Content-Type: application/json
+
+["+79811131773", "+79816984956"]
+
+
+###
+GET localhost:8080/meetings/2/invitations

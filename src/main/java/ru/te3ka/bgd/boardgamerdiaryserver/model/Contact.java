@@ -1,9 +1,12 @@
 package ru.te3ka.bgd.boardgamerdiaryserver.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,4 +26,8 @@ public class Contact {
     @JoinColumn(name = "profile_contact_phone")
     @JsonBackReference
     private Profile profile;
+
+    @OneToMany
+    @JsonManagedReference
+    private List<Invitation> invitations;
 }

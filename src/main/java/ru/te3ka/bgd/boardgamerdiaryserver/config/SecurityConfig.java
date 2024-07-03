@@ -25,16 +25,13 @@ public class SecurityConfig {
                         authorizeRequests
                                 .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/upload/**").permitAll()
-//                                .requestMatchers("/upload/wishlist/**").permitAll()
-//                                .requestMatchers("/upload/my_collection/**").permitAll()
-//                                .requestMatchers("/upload/want_to_play/**").permitAll()
-//                                .requestMatchers("/upload/profile/**").permitAll()
-//                                .requestMatchers("/upload/contacts/**").permitAll()
+                                .requestMatchers("/meetings/**").permitAll()
+                                .requestMatchers("/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
                 .httpBasic(withDefaults())
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**", "/upload/wishlist/**"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/**", "/h2-console/**", "/upload/wishlist/**", "/meetings/**"))
                 .headers(headers -> headers.frameOptions().disable());
         return httpSecurity.build();
     }
