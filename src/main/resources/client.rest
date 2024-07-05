@@ -68,3 +68,21 @@ GET localhost:8080/meetings/2/invitations
 
 ###
 POST localhost:8080/meetings/
+
+###
+POST http://192.168.31.193:8080/upload/profile/
+Content-Type: application/json
+
+{
+  "contactPhone": "+79999999999",
+  "firstName": "Алексей",
+  "surname": "Максименко",
+  "nickname": "Kelias",
+  "city": "Belgrad",
+  "email": "proba@mail.com",
+  "dayOfBirth": 12,
+  "monthOfBirth": 2,
+  "yearOfBirth": 1997,
+  "hobbies": "none",
+  "photoPath": ""
+}

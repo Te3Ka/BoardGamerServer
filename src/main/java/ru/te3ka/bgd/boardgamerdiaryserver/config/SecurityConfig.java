@@ -13,12 +13,24 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
+/**
+ * Конфигурация безопасности для настройки параметров безопасности веб-приложения.
+ *
+ * Этот класс содержит настройки для авторизации, аутентификации и защиты от CSRF.
+ */
 @EnableWebSecurity
 @Configuration
 @EnableMethodSecurity(securedEnabled = true)
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    /**
+     * Конфигурация фильтра безопасности для настройки параметров безопасности веб-приложения.
+     *
+     * @param httpSecurity Объект для настройки параметров безопасности HTTP.
+     * @return Настроенный объект SecurityFilterChain.
+     * @throws Exception В случае ошибки настройки безопасности.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(authorizeRequests ->
@@ -36,6 +48,11 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
+    /**
+     * Конфигурация сервиса пользовательских деталей для аутентификации пользователей.
+     *
+     * @return Объект UserDetailsService, управляющий пользовательскими данными в памяти.
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();

@@ -15,6 +15,11 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Сервис для отправки push-уведомлений через OneSignal.
+ *
+ * Этот сервис отправляет push-уведомления в приложение через API OneSignal.
+ */
 @Service
 public class PushNotificationService {
     private static final String REST_API_KEY = "ZmUzZWFkMTgtZjdiYy00NjEwLWJlZmUtM2RjMDVkZmMzNzM2";
@@ -22,6 +27,13 @@ public class PushNotificationService {
     @Autowired
     private ContactOneSignalRepository contactOneSignalRepository;
 
+    /**
+     * Отправляет push-уведомление по приглашению на встречу.
+     *
+     * @param token Токен OneSignal для получения уведомлений.
+     * @param title Заголовок уведомления.
+     * @param body Текст уведомления.
+     */
     public void sendPushNotificationToMeetingInvitation(String token, String title, String body) {
         try {
             HttpURLConnection connection = getHttpURLConnection();
@@ -73,6 +85,12 @@ public class PushNotificationService {
         }
     }
 
+    /**
+     * Создает и настраивает соединение с API OneSignal.
+     *
+     * @return Конфигурированное {@link HttpURLConnection} для отправки запроса.
+     * @throws IOException Если возникает ошибка при создании соединения.
+     */
     private static @NotNull HttpURLConnection getHttpURLConnection() throws IOException {
         URL url = new URL("https://onesignal.com/api/v1/notifications");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -86,6 +104,12 @@ public class PushNotificationService {
         return connection;
     }
 
+    /**
+     * Получает токен OneSignal по номеру телефона.
+     *
+     * @param phoneNumber Номер телефона.
+     * @return Токен OneSignal, связанный с указанным номером телефона, или {@code null}, если токен не найден.
+     */
     public String getTokenByPhoneNumber(String phoneNumber) {
         return contactOneSignalRepository.findByPhoneNumber(phoneNumber)
                 .map(ContactOneSignal::getOneSignalToken)

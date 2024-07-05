@@ -15,12 +15,26 @@ import org.springframework.kafka.core.*;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * Конфигурация для настройки Kafka Producer и Consumer.
+ *
+ * В этом классе задаются настройки для отправки и получения сообщений через Kafka.
+ */
+/*
 @Configuration
 @EnableKafka
 public class KafkaConfig {
 
     @Value("{spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
+
+    */
+/**
+     * Конфигурация фабрики продюсера для Kafka.
+     *
+     * @return Конфигурация для создания продюсера Kafka.
+     *//*
 
     @Bean
     public ProducerFactory<String, String> producerFactory() {
@@ -31,10 +45,24 @@ public class KafkaConfig {
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
+    */
+/**
+     * Конфигурация шаблона Kafka для отправки сообщений.
+     *
+     * @return Шаблон Kafka для продюсеров.
+     *//*
+
     @Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
+
+    */
+/**
+     * Конфигурация фабрики консюмера для Kafka.
+     *
+     * @return Конфигурация для создания консюмера Kafka.
+     *//*
 
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
@@ -45,6 +73,13 @@ public class KafkaConfig {
         configProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         return new DefaultKafkaConsumerFactory<>(configProps);
     }
+
+    */
+/**
+     * Конфигурация контейнера для прослушивания сообщений из Kafka.
+     *
+     * @return Контейнер для прослушивания сообщений Kafka с использованием конфигурации консюмера.
+     *//*
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {

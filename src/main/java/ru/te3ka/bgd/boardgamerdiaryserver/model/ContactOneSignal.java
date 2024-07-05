@@ -4,6 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Сущность, представляющая контакт на ресурсе OneSignal.
+ *
+ * Эта сущность содержит информацию о контакте, такую как номер телефона, токен OneSignal и связь с Профилем.
+ */
 @Getter
 @Setter
 @Entity
