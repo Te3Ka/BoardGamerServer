@@ -54,7 +54,7 @@ Content-Type: application/json
   "date": "2024-07-20",
   "location": "New Holland",
   "boardgames": ["Bloodborne", "God of War"],
-  "contacts": ["+79811131773", "+79816984956"]
+  "contacts": ["+79811131773"]
 }
 
 ###
@@ -63,6 +63,8 @@ Content-Type: application/json
 
 ["+79811131773", "+79816984956"]
 
-
 ###
 GET localhost:8080/meetings/2/invitations
+
+###
+POST localhost:8080/meetings/

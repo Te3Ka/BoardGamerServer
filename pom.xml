@@ -111,9 +111,6 @@
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session-jdbc</artifactId>
         </dependency>
-
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -186,6 +183,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bus-amqp</artifactId>
             <version>4.1.1</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.onesignal</groupId>-->
+<!--            <artifactId>OneSignal</artifactId>-->
+<!--            <version>5.1.17</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20231013</version>
         </dependency>
     </dependencies>
 

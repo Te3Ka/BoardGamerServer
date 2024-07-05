@@ -1,5 +1,6 @@
 package ru.te3ka.bgd.boardgamerdiaryserver.controller;
 
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import ru.te3ka.bgd.boardgamerdiaryserver.model.Meeting;
 import ru.te3ka.bgd.boardgamerdiaryserver.repository.ContactRepository;
 import ru.te3ka.bgd.boardgamerdiaryserver.repository.InvitationRepository;
 import ru.te3ka.bgd.boardgamerdiaryserver.repository.MeetingRepository;
+import ru.te3ka.bgd.boardgamerdiaryserver.service.PushNotificationService;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,14 +22,24 @@ public class MeetingController {
     private MeetingRepository meetingRepository;
 
     @Autowired
-    private ContactRepository contactRepository;
-
-    @Autowired
-    private InvitationRepository invitationRepository;
+    private PushNotificationService pushNotificationService;
 
     @PostMapping("/")
-    public Meeting createMeeting(@RequestBody Meeting meeting) {
-        return meetingRepository.save(meeting);
+    public ResponseEntity<Meeting> createMeeting(@RequestBody Meeting meeting) {
+//        meetingRepository.save(meeting);
+
+        String title = "Новая встреча!";
+        String body = "Вы приглашены на встречу " + meeting.getDate()
+                + " в " + meeting.getLocation()
+                + " с " + meeting.getContacts()
+                + " для игры в " + meeting.getBoardgames();
+        for (String contact : meeting.getContacts()) {
+            String token = pushNotificationService.getTokenByPhoneNumber(contact);
+            if (token != null) {
+                pushNotificationService.sendPushNotificationToMeetingInvitation(token, title, body);
+            }
+        }
+        return ResponseEntity.ok(meeting);
     }
 
     @PostMapping("/{meetingId}/invite")
@@ -37,7 +49,7 @@ public class MeetingController {
             Meeting meeting = optionalMeeting.get();
             meeting.getContacts().addAll(contactPhones);
             meetingRepository.save(meeting);
-            return ResponseEntity.ok("Invitations sent successfully");
+            return ResponseEntity.ok("Invitations sent successfully.");
         } else {
             return ResponseEntity.badRequest().body("Meeting with ID " + meetingId + " not found.");
         }
